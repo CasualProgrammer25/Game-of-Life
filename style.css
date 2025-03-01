@@ -11,7 +11,8 @@ body {
 
 .my-table td {
   border: 2px solid black;
-
+   width: 20px; /* Set desired square size */
+   height: 50px; /* Same value as width for a square cell */
   padding: 8px;
 }
 
