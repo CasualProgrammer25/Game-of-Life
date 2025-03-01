@@ -1,0 +1,31 @@
+body {
+  background-color: white;
+}
+
+.my-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.my-table th,
+
+.my-table td {
+  border: 2px solid black;
+
+  padding: 8px;
+}
+
+.my-table th {
+  border: 2px solid black;
+  
+  text-align: left;
+}
+.circle {
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: blue; /* Customize color */
+  margin: auto; /* Center the circle within the td */
+}
+
