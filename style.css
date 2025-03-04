@@ -1,32 +1,35 @@
 body {
-  background-color: white;
+  background-color: black;
 }
 
-.my-table {
+#my-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.my-table th,
+#my-table th,
 
-.my-table td {
-  border: 2px solid black;
+td {
+  border: 2px solid white;
    width: 20px; /* Set desired square size */
    height: 50px; /* Same value as width for a square cell */
   padding: 8px;
 }
 
-.my-table th {
+.aRow {
   border: 2px solid black;
-  
   text-align: left;
 }
-.circle {
 
+tr {
+  border: 2px solid black;
+  text-align: left;
+}
+
+#circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background-color: blue; /* Customize color */
   margin: auto; /* Center the circle within the td */
 }
-
