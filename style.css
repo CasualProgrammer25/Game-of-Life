@@ -26,10 +26,18 @@ tr {
   text-align: left;
 }
 
-#circle {
+.circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background-color: blue; /* Customize color */
+  margin: auto; /* Center the circle within the td */
+}
+
+.whiteCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white; /* Customize color */
   margin: auto; /* Center the circle within the td */
 }

@@ -1,6 +1,6 @@
 function createTable() {
-    const rows = 10;
-    const cols = 10;
+    const rows = 20;
+    const cols = 20;
     const CellsArray = [];
 
     var table = document.getElementById('my-table');
@@ -14,12 +14,18 @@ function createTable() {
         CellsArray[i][j] = 0;
          var td = document.createElement('td');
          tdContent= document.createElement('div');
-         tdContent.id = "circle";
+         tdContent.className = "circle";
+         tdContent.id = "circle" + i + j;
          td.appendChild(tdContent);
          row.appendChild(td)
       }
       table.appendChild(row)
     }
+}
+
+function changeColor(row, column) {
+    var cell = document.getElementById("circle" + row + column);
+    cell.className = "whiteCircle";
 }
 
 var div = document.getElementById('content');
@@ -29,3 +35,5 @@ p.textContent = 'I was appended to the div';
 div.appendChild(p);
 
 createTable();
+
+changeColor(0,0);
