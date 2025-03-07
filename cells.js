@@ -28,6 +28,47 @@ function changeColor(row, column) {
     cell.className = "whiteCircle";
 }
 
+function getNeighbors(row, column) {
+    var returnArr = [];
+    if ((row-1) >= 0) {
+         var upDiv = "circle" + (row-1) + column;
+         returnArr.push(upDiv);
+         console.log("------upDiv: " + upDiv);
+    }
+    if ((row+1) <= 19 ) {
+        var downDiv = "circle" + (row+1) + column;
+        returnArr.push(downDiv);
+        console.log("------downDiv: " + downDiv);
+    }
+    if ((column-1) >= 0) {
+        var leftDiv = "circle" + row + (column-1);
+        returnArr.push(leftDiv);
+        console.log("------leftDiv: " + leftDiv)
+    }
+    if ((column+1) <= 19 ) {
+        var rightDiv = "circle" + row + (column+1);
+        returnArr.push("------rightDiv: " + rightDiv);
+    }
+    if ((row-1) >= 0 && (column+1) <= 19) {
+         var northEastDiv = "circle" + (row-1) + (column+1);
+        returnArr.push("northEastDiv: " + northEastDiv);
+    }
+    if ((row-1) >= 0 && (column-1) >= 0) {
+        var northWestDiv = "circle" + (row-1) + (column-1);
+        returnArr.push("northWestDiv: "+northWestDiv);
+    }
+    if ((row+1) <= 19 &&  (column+1) <= 19) {
+        var southEastDiv = "circle" + (row+1) + (column+1);
+        returnArr.push("southEastDiv: "+southEastDiv);
+    }
+    if ((row+1) <= 19 &&  (column-1) >= 0) {
+        var southWestDiv = "circle" + (row+1) + (column-1);
+        returnArr.push("southWestDiv: "+southWestDiv);
+    }
+
+    return returnArr;
+}
+
 var div = document.getElementById('content');
 var p = document.createElement('p');
 p.style.color = 'black';
