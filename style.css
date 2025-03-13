@@ -26,7 +26,7 @@ tr {
   text-align: left;
 }
 
-.circle {
+.deadCircle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -34,7 +34,7 @@ tr {
   margin: auto; /* Center the circle within the td */
 }
 
-.whiteCircle {
+.aliveCircle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
