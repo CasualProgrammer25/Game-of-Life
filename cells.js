@@ -1,6 +1,7 @@
+const rows = 20;
+const cols = 20;
+
 function createTable() {
-    const rows = 20;
-    const cols = 20;
     const CellsArray = [];
 
     var table = document.getElementById('my-table');
@@ -23,9 +24,22 @@ function createTable() {
     }
 }
 
-function changeColor(row, column) {
+function changeColor(row, column, state) {
     var cell = document.getElementById("circle" + row + column);
-    cell.className = "aliveCircle";
+    if (state == "alive") {
+        cell.className = "aliveCircle";
+    } else {
+        cell.className = "deadCircle";
+    }
+}
+
+function getState(row, column) {
+    var cell = document.getElementById("circle" + row + column);
+    if (cell.className == "aliveCircle") {
+        return "alive";
+    } else {
+        return "dead";
+    }
 }
 
 function getNeighbors(row, column) {
@@ -66,6 +80,11 @@ function getNeighbors(row, column) {
     return returnArr;
 }
 
+function getAliveCellsForRowCol(row, column) {
+    let neighbors = getNeighbors(row, column);
+    return getAliveCells(neighbors);
+}
+
 function getAliveCells(neighbors) {
   let totalAlive = 0;
   for(i = 0; i < neighbors.length; i++) {
@@ -76,16 +95,66 @@ function getAliveCells(neighbors) {
   return totalAlive;
 }
 
+//Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+//Any live cell with two or three live neighbours lives on to the next generation.
+//Any live cell with more than three live neighbours dies, as if by overpopulation.
+//Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+function decideStatus() {
+    for (r = 0; r < rows; r++) {
+        for (c = 0; c< cols; c++) {
+            let currentState = getState(r, c);
+            let aliveNeighbors = getAliveCellsForRowCol(r, c);
+            if (currentState == "alive") {
+                 if (aliveNeighbors < 2) {
+                    changeColor(r, c, "dead");
+                 } else if (aliveNeighbors > 3 ) {
+                    changeColor(r, c, "dead");
+                 }
+            } else {
+                if (aliveNeighbors == 3) {
+                    changeColor(r, c, "alive");
+                }
+            }
+        }
+    }
+}
+
 var div = document.getElementById('content');
 var p = document.createElement('p');
 p.style.color = 'black';
 p.textContent = 'I was appended to the div';
 div.appendChild(p);
 
-createTable();
+function initalize() {
+    createTable();
+    changeColor(6,6, "alive");
+    changeColor(5,6, "alive");
+    changeColor(5,7, "alive");
+    changeColor(5,8, "alive");
+    changeColor(5,10, "alive");
+    changeColor(7,9, "alive");
+    changeColor(7,10, "alive");
+    changeColor(8,7, "alive");
+    changeColor(8,8, "alive");
+    changeColor(8,10, "alive");
+    changeColor(9,6, "alive");
+    changeColor(9,8, "alive");
+    changeColor(9,10, "alive");
+}
 
-changeColor(0,0);
+initalize();
+
+let delay = 1000;
+
+for(i = 0; i<1000; i++) {
+    setTimeout(() => {
+       decideStatus();
+     }, delay);
+     delay += 1000;
+}
 
 let nb = getNeighbors(5,5);
 let aliveCells = getAliveCells(nb);
 console.log("Alive Cells = "+ aliveCells);
+//decideStatus();
